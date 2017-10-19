@@ -3,8 +3,9 @@
     "verbose": true
   },
   "scripts": {
-    "test": "npm run lint && nyc ava",
-    "lint": "standard | snazzy"
+    "lint": "standard | snazzy",
+    "start": "node server.js",
+    "test": "npm run lint && nyc ava"
   },
   "devDependencies": {
     "ava": "^0.22.0",
@@ -12,5 +13,8 @@
     "rewire": "^2.5.2",
     "snazzy": "^7.0.0",
     "standard": "^10.0.3"
+  },
+  "dependencies": {
+    "express": "^4.16.2"
   }
 }
