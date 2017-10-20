@@ -18,3 +18,16 @@ test.cb('page loader should return the `message` query string', t => {
   }
   pageLoader(req, res)
 })
+
+test.cb('page loader should return no message found', t => {
+  const req = {
+    query: {}
+  }
+  const res = {
+    end: msg => {
+      t.is(msg, 'No message found.')
+      t.end()
+    }
+  }
+  pageLoader(req, res)
+})
