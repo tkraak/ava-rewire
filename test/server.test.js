@@ -34,9 +34,9 @@ test.cb('page loader should return no message found', t => {
   pageLoader(req, res)
 })
 
-test.cb('page loader should make a http call', t => {
-  const stub = sinon.stub(http, 'get').callsFake(() => {
-    t.true(stub.calledOnce)
+test.cb("page loader invokes http's get method", t => {
+  const get = sinon.stub(http, 'get').callsFake(() => {
+    t.true(get.calledOnce)
     t.end()
     return {
       on: () => {}
