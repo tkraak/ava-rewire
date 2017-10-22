@@ -13,7 +13,7 @@ test.cb('page loader should return the `message` query string', t => {
     }
   }
   const res = {
-    end: msg => {
+    send: msg => {
       t.is(msg, 'Found this message: hi tester')
       t.end()
     }
@@ -26,7 +26,7 @@ test.cb('page loader should return no message found', t => {
     query: {}
   }
   const res = {
-    end: msg => {
+    send: msg => {
       t.is(msg, 'No message found.')
       t.end()
     }
