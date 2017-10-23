@@ -35,13 +35,28 @@ test.cb('page loader should return no message found', t => {
 })
 
 test.cb("page loader invokes http's get method", t => {
-  const get = sinon.stub(http, 'get').callsFake(() => {
+  const get = sinon.stub(http, 'get').callsFake((url, callback) => {
+    callback(response)
     t.true(get.calledOnce)
-    t.end()
+    get.restore()
     return {
       on: () => {}
     }
   })
+  const response = {
+    statusCode: 200
+  }
+  const req = {
+    query: {
+      callback: 'callMe'
+    }
+  }
+  const res = {
+    send: msg => {
+      t.is(msg, 'Server responded with status code: 200')
+      t.end()
+    }
+  }
 
-  pageLoader({ query: { callback: 'callMe' } }, {})
+  pageLoader(req, res)
 })
